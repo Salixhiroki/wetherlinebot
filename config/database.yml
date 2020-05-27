@@ -15,12 +15,13 @@
 # gem 'pg'
 #
 default: &default
-  adapter: postgresql
-  encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  adapter: mysql2
+  encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-
+  username: root
+  password:
+  socket: /var/lib/mysql/mysql.sock
+  
 development:
   <<: *default
   database: weather_development
@@ -80,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: weather_production
-  username: weather
-  password: <%= ENV['WEATHER_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
