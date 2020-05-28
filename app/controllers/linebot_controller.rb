@@ -38,6 +38,8 @@ class LinebotController < ApplicationController
             # binding pry
             # private内のtemplateメソッドを呼び出します。
             client.reply_message(event['replyToken'], template)
+            client.reply_message(event['replyToken'], template2)
+            
           end
         end
       end
@@ -71,16 +73,19 @@ class LinebotController < ApplicationController
   }
 }
 
-{
-    "type": "location",
-    "title": "my location",
-    "address": "〒150-0002 東京都渋谷区渋谷２丁目２１−１",
-    "latitude": 35.65910807942215,
-    "longitude": 139.70372892916203
-}
-    
-    
-    
+  end
+  
+  
+  def template2
+
+    {
+      "type": "location",
+      "title": "my location",
+      "address": "〒150-0002 東京都渋谷区渋谷２丁目２１−１",
+      "latitude": 35.65910807942215,
+      "longitude": 139.70372892916203
+    }  
+  
   end
 
 end
