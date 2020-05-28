@@ -37,7 +37,7 @@ class LinebotController < ApplicationController
           if event.message['text'].eql?('アンケート')
             # binding pry
             # private内のtemplateメソッドを呼び出します。
-            client.reply_message(event['replyToken'], template)
+            client.reply_message(event['replyToken'], template3)
             # client.reply_message(event['replyToken'], template2)
             
           end
