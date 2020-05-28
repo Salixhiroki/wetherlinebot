@@ -24,7 +24,7 @@ class LinebotController < ApplicationController
 
     events = client.parse_events_from(body)
     
-    @sample = "もうやだ"
+    @sample = "もうやだです"
     @sample2 = "もういい"
     
     
@@ -37,8 +37,8 @@ class LinebotController < ApplicationController
           if event.message['text'].eql?('アンケート')
             # binding pry
             # private内のtemplateメソッドを呼び出します。
-            client.reply_message(event['replyToken'], template)
-            client.reply_message(event['replyToken'], template2)
+            client.reply_message(event['replyToken'], "お前はバカか")
+            # client.reply_message(event['replyToken'], template2)
             
           end
         end
@@ -76,16 +76,16 @@ class LinebotController < ApplicationController
   end
   
   
-  def template2
+  # def template2
 
-    {
-      "type": "location",
-      "title": "my location",
-      "address": "〒150-0002 東京都渋谷区渋谷２丁目２１−１",
-      "latitude": 35.65910807942215,
-      "longitude": 139.70372892916203
-    }  
+  #   {
+  #     "type": "location",
+  #     "title": "my location",
+  #     "address": "〒150-0002 東京都渋谷区渋谷２丁目２１−１",
+  #     "latitude": 35.65910807942215,
+  #     "longitude": 139.70372892916203
+  #   }  
   
-  end
+  # end
 
 end
