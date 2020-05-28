@@ -23,7 +23,11 @@ class LinebotController < ApplicationController
     end
 
     events = client.parse_events_from(body)
-
+    
+    @sample = "もうやだ"
+    @sample2 = "もういい"
+    
+    
     events.each { |event|
       case event
       when Line::Bot::Event::Message
@@ -55,13 +59,13 @@ class LinebotController < ApplicationController
       "actions": [
           {
             "type": "message",
-            "label": "楽しい",
-            "text": "楽しい"
+            "label": @sample,
+            "text": @sample
           },
           {
             "type": "message",
-            "label": "楽しくない",
-            "text": "楽しくない"
+            "label": @sample2,
+            "text": @sample2
           }
       ]
   }
