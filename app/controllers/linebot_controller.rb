@@ -91,7 +91,7 @@ class LinebotController < ApplicationController
   def template3
     {
       "type": "text",
-      "text": "Hello, world"
+      "text": "お前はバカか"
     }
   end
   
