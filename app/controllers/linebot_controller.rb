@@ -37,7 +37,7 @@ class LinebotController < ApplicationController
           if event.message['text'].eql?('アンケート')
             # binding pry
             # private内のtemplateメソッドを呼び出します。
-            client.reply_message(event['replyToken'], "お前はバカか")
+            client.reply_message(event['replyToken'], template)
             # client.reply_message(event['replyToken'], template2)
             
           end
@@ -87,5 +87,33 @@ class LinebotController < ApplicationController
   #   }  
   
   # end
+  
+  def template3
+    {
+  "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+  "type": "message",
+  "mode": "active",
+  "timestamp": 1462629479859,
+  "source": {
+    "type": "user",
+    "userId": "U4af4980629..."
+  },
+  "message": {
+    "id": "325708",
+    "type": "text",
+    "text": "お前はバカか",
+    "emojis": [
+      {
+        "index": 14,
+        "length": 6,
+        "productId": "5ac1bfd5040ab15980c9b435",
+        "emojiId": "001"
+      }
+    ]
+  }
+}
+end
+  
+  
 
 end
