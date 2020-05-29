@@ -54,6 +54,7 @@ class LinebotController < ApplicationController
   
   
   def send_msg(msg)
+    logger.debug("東京に行きたいなー")
     if msg == "東京"
       return msg
     else
