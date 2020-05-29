@@ -85,7 +85,7 @@ class LinebotController < ApplicationController
     (0..7).each do |i|
       weather_id = item[i][:weather][0][:id]
       weather = get_weather(weather_id)
-      if weather ="雨"
+      if weather == "雨"
         n = 1
       end
     end
