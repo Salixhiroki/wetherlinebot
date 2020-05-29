@@ -29,7 +29,7 @@ class LinebotController < ApplicationController
         case event.type
         when Line::Bot::Event::MessageType::Text
           # LINEから送られてきたメッセージが「アンケート」と一致するかチェック
-          
+          msg = event.message['text']
           if send_msg(msg)
             client.reply_message(event['replyToken'], template(msg))
           end
