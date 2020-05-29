@@ -71,6 +71,7 @@ class LinebotController < ApplicationController
       BASE_URL << ENV["API_KEY"]
       url = URI.encode(BASE_URL)
       open_url = open(url)
+      logger.debug("東京に行きたいなー")
       uri = URI.parse(open_url)
       response = Net::HTTP.get(uri)
       data = JSON.parse(response.read, {symbolize_names: true})
