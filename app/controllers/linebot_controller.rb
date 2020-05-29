@@ -31,7 +31,7 @@ class LinebotController < ApplicationController
           # LINEから送られてきたメッセージが「アンケート」と一致するかチェック
           
           if send_msg(msg)
-            client.reply_message(event['replyToken'], template4(msg))
+            client.reply_message(event['replyToken'], template(msg))
           end
           
           # if event.message['text'].eql?('アンケート')
@@ -51,13 +51,13 @@ class LinebotController < ApplicationController
   
   def send_msg(message)
     if message == "東京"
-      return true
+      return message
     else
       false
     end
   end
   
-  def template4(message)
+  def template
     case message
     when "東京"
       response = open(BASE_URL + "?q=Tokyo,jp&APPID=#{ENV["API_KEY"]}")
