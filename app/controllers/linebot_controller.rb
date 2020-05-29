@@ -56,7 +56,7 @@ class LinebotController < ApplicationController
   
   
   def send_msg(msg)
-    logger.debug("東京に行きたいなー")
+    # logger.debug("東京に行きたいなー")
     if msg == "東京"
       return true
     else
@@ -69,6 +69,8 @@ class LinebotController < ApplicationController
     when "東京"
       response = open(BASE_URL + "?q=Tokyo,jp&appid=#{ENV["API_KEY"]}")
       logger.debug("東京に行きたいなー")
+      logger.debug(response)
+      
       data = JSON.parse(response.read, {symbolize_names: true})
       result = weather(data)
       return result
