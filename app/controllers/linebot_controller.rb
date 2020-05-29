@@ -35,7 +35,7 @@ class LinebotController < ApplicationController
           # LINEから送られてきたメッセージが「アンケート」と一致するかチェック
           message = event.message['text']
            logger.debug("東京に行きたいなー")
-          if send_msg(message)
+          if send_msg(message)=="東京"
             client.reply_message(event['replyToken'], template(message))
           end
           
