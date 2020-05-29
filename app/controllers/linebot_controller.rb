@@ -35,8 +35,9 @@ class LinebotController < ApplicationController
           # LINEから送られてきたメッセージが「アンケート」と一致するかチェック
           message = event.message['text']
            logger.debug("東京に行きたいなー")
-          if send_msg(message)=="東京"
-            client.reply_message(event['replyToken'], template(message))
+          if send_msg(message)
+            city = "東京"
+            client.reply_message(event['replyToken'], template(city))
           end
           
           # if event.message['text'].eql?('アンケート')
@@ -57,14 +58,14 @@ class LinebotController < ApplicationController
   def send_msg(msg)
     logger.debug("東京に行きたいなー")
     if msg == "東京"
-      return msg
+      return true
     else
       false
     end
   end
   
-  def template(message)
-    case message
+  def template(city)
+    case city
     when "東京"
       response = open(BASE_URL + "?q=Tokyo,jp&APPID=#{ENV["API_KEY"]}")
       data = JSON.parse(response.read, {symbolize_names: true})
