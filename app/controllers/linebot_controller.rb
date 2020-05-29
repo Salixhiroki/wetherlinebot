@@ -67,6 +67,7 @@ class LinebotController < ApplicationController
   def template(city)
     case city
     when "東京"
+      logger.debug("東京に行きたいなー")
       response = open(BASE_URL + "?q=Tokyo,jp&appid=#{ENV["API_KEY"]}")
       logger.debug("東京に行きたいなー")
       logger.debug(response)
