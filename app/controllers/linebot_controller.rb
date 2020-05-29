@@ -7,6 +7,10 @@ class LinebotController < ApplicationController
   def index
   end
   
+  require "json"
+  require "open-uri"
+  require "date"
+  BASE_URL = "http://api.openweathermap.org/data/2.5/forecast"
   
 
   def callback
@@ -29,9 +33,9 @@ class LinebotController < ApplicationController
         case event.type
         when Line::Bot::Event::MessageType::Text
           # LINEから送られてきたメッセージが「アンケート」と一致するかチェック
-          msg = event.message['text']
-          if send_msg(msg)
-            client.reply_message(event['replyToken'], template(msg))
+          message = event.message['text']
+          if send_msg(message)
+            client.reply_message(event['replyToken'], template(message))
           end
           
           # if event.message['text'].eql?('アンケート')
@@ -49,15 +53,15 @@ class LinebotController < ApplicationController
   
   
   
-  def send_msg(message)
-    if message == "東京"
-      return message
+  def send_msg(msg)
+    if msg == "東京"
+      return msg
     else
       false
     end
   end
   
-  def template
+  def template(message)
     case message
     when "東京"
       response = open(BASE_URL + "?q=Tokyo,jp&APPID=#{ENV["API_KEY"]}")
@@ -67,18 +71,20 @@ class LinebotController < ApplicationController
     end
   end
     
-  def weather_data(data)
+  def weather(data)
     item = data[:list]
-    result = Array.new
     cityname = data[:city][:name]
     (0..7).each do |i|
       weather_id = item[i][:weather][0][:id]
       weather = get_weather(weather_id)
       if weather ="雨"
-        result = "傘を持っていってください"
+        n = 1
       end
     end
-    return result
+    
+    if n==1
+      return "傘を持っていってください"
+    end
   end
     
   
