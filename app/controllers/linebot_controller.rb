@@ -1,16 +1,16 @@
 class LinebotController < ApplicationController
 
   require 'line/bot'
-
+  require "json"
+  require "open-uri"
+  require "date"
   protect_from_forgery :except => [:callback]
   
   def index
   end
   
-  require "json"
-  require "open-uri"
-  require "date"
-  BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
+ 
+  BASE_URL = "http://api.openweathermap.org/data/2.5/weather?q=Tokyo,jp&appid="
   
 
   def callback
@@ -68,10 +68,11 @@ class LinebotController < ApplicationController
     case city
     when "東京"
       logger.debug("東京に行きたいなー")
-      response = open(BASE_URL + "?q=Tokyo,jp&appid=#{ENV["API_KEY"]}")
-      logger.debug("東京に行きたいなー")
-      logger.debug(response)
-      
+      BASE_URL << ENV["API_KEY"]
+      url = URI.encode(BASE_URL)
+      open_url = open(url)
+      uri = URI.parse(open_url)
+      response = Net::HTTP.get(uri)
       data = JSON.parse(response.read, {symbolize_names: true})
       result = weather(data)
       return result
