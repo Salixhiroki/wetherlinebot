@@ -2,7 +2,8 @@ class LinebotController < ApplicationController
 
   require 'line/bot'
   require "json"
-  require "open-uri"
+  require 'net/https'
+  require 'uri'
   require "date"
   protect_from_forgery :except => [:callback]
   
@@ -73,8 +74,6 @@ class LinebotController < ApplicationController
       BASE_URL << ENV["API_KEY"].to_s
       url = URI.encode(BASE_URL)
       logger.debug(url)
-      open_url = open(url)
-      logger.debug("東京に行きたいなー")
       uri = URI.parse(open_url)
       response = Net::HTTP.get(uri)
       data = JSON.parse(response.read, {symbolize_names: true})
