@@ -68,7 +68,7 @@ class LinebotController < ApplicationController
     case city
     when "東京"
       logger.debug("東京に行きたいなー")
-      BASE_URL << ENV["API_KEY"]
+      BASE_URL << ENV["API_KEY"].to_s
       url = URI.encode(BASE_URL)
       open_url = open(url)
       logger.debug("東京に行きたいなー")
