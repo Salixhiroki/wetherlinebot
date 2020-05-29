@@ -90,6 +90,8 @@ class LinebotController < ApplicationController
     
     if n==1
       return "傘を持っていってください"
+    else
+      return "今日は傘はいらないよ！"
     end
   end
     
