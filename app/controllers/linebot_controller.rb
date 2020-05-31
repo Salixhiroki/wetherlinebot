@@ -73,7 +73,7 @@ class LinebotController < ApplicationController
       BASE_URL << ENV["API_KEY"].to_s
       url = URI.encode(BASE_URL)
       logger.debug(url)
-      uri = URI.parse(open_url)
+      uri = URI.parse(url)
       response = Net::HTTP.get(uri)
       data = JSON.parse(response.read, {symbolize_names: true})
       result = weather(data)
