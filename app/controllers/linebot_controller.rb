@@ -7,6 +7,8 @@ class LinebotController < ApplicationController
   require "date"
   protect_from_forgery :except => [:callback]
   
+  API_KEY = "763383863ffb272b64c5303acca61551"
+  
   def index
   end
   
@@ -68,14 +70,15 @@ class LinebotController < ApplicationController
   def template(city)
     case city
     when "東京"
-      logger.debug("東京に行こうよ")
+      # logger.debug("東京に行こうよ")
       
-      BASE_URL << ENV["API_KEY"].to_s
+      BASE_URL << API_KEY
       url = URI.encode(BASE_URL)
       logger.debug(url)
       uri = URI.parse(url)
-      # response = Net::HTTP.get(uri)
+      response = Net::HTTP.get(uri)
       logger.debug(uri)
+      logger.debug(response)
       data = JSON.parse(response.read, {symbolize_names: true})
       result = weather(data)
       return result
