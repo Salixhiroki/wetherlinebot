@@ -70,7 +70,7 @@ class LinebotController < ApplicationController
     when "東京"
       # logger.debug("東京に行こうよ")
       
-      response = BASE_URL << ENV["API_KEY"]
+      response =open(BASE_URL << ENV["API_KEY"])
       
       # url = URI.encode(BASE_URL)
       # uri = URI.parse(url)
