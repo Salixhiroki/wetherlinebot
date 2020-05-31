@@ -70,13 +70,12 @@ class LinebotController < ApplicationController
     when "東京"
       # logger.debug("東京に行こうよ")
       
-      response = BASE_URL << ENV["API_KEY"].to_s
+      response = BASE_URL << ENV["API_KEY"]
       
       # url = URI.encode(BASE_URL)
-      # logger.debug(url)
       # uri = URI.parse(url)
       # # response = Net::HTTP.get(uri)
-      # logger.debug(uri)
+      logger.debug(response)
       data = JSON.parse(response.read, {symbolize_names: true})
       result = weather(data)
       return result
