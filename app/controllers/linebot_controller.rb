@@ -11,7 +11,7 @@ class LinebotController < ApplicationController
   end
   
  
-  BASE_URL = "http://api.openweathermap.org/data/2.5/weather?q=Tokyo,jp&appid="
+  BASE_URL = "https://api.openweathermap.org/data/2.5/weather?q=Tokyo,jp&appid="
   
 
   def callback
