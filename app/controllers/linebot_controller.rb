@@ -73,6 +73,9 @@ class LinebotController < ApplicationController
       logger.debug(response)
       data = JSON.parse(response.read, {symbolize_names: true})
       result = weather(data)
+      logger.debug(result)
+      logger.debug("リザルトなの")
+      
       return result
     end
   end
@@ -85,14 +88,14 @@ class LinebotController < ApplicationController
       logger.debug(weather_id)
       weather = get_weather(weather_id)
       logger.debug(weather)
-      logger.debug("で五山せよ")
       
       if weather == "雨"
         n = 1
         break
       end
     end
-    
+    logger.debug(n)
+    logger.debug("で五山せよ")
     if n==1
       return "傘を持っていってください"
     else
