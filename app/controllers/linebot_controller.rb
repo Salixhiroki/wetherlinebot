@@ -72,6 +72,7 @@ class LinebotController < ApplicationController
     case city
     when "東京"
       key = ENV["API_KEY"]
+      logger.debug(key)
       url = "https://api.openweathermap.org/data/2.5/forecast?q=Tokyo&appid=" + key 
       response =open(url)
       logger.debug(response)
