@@ -90,12 +90,12 @@ class LinebotController < ApplicationController
       weather_date =  item[i][:dt_txt]
       weather_date = weather_date.slice(0..9)
       logger.debug(weather_date)
-      weather = get_weather(weather_id)
+      if date == weather_date
+        weather = get_weather(weather_id)
+      end
       logger.debug(weather)
       
       if weather == "雨"
-        logger.debug("雨がいいな")
-        logger.debug(n)
         n = 1
         break
       end
