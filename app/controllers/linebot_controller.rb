@@ -35,11 +35,12 @@ class LinebotController < ApplicationController
           # logger.debug("東京に行きたいなー")
           if send_msg(message)
             city = "東京"
-            @wether_status =  template(city)
+            @weather_status =  template(city)
             weather_message = {
               type: 'text',
               text: @weather_status
             }
+            logger.debug(@weather_status)
             client.reply_message(event['replyToken'], weather_message)
           end
           
