@@ -69,7 +69,9 @@ class LinebotController < ApplicationController
     case city
     when "東京"
       
-      response =open(BASE_URL << ENV["API_KEY"])
+      url= BASE_URL << ENV["API_KEY"]
+      
+      response =open(url)
       
       logger.debug(response)
       data = JSON.parse(response.read, {symbolize_names: true})
