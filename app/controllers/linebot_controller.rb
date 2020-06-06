@@ -88,9 +88,7 @@ class LinebotController < ApplicationController
     (0..7).each do |i|
       weather_id = item[i][:weather][0][:id]
       weather_date =  item[i][:dt_txt]
-      weather_date = weather_date[6]
-      logger.debug(weather_date)
-      # logger.debug(weather_id)
+      weather_date = weather_date.slice(0..9)
       logger.debug(weather_date)
       weather = get_weather(weather_id)
       logger.debug(weather)
