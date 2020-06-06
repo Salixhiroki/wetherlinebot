@@ -71,7 +71,9 @@ class LinebotController < ApplicationController
   def template(city)
     case city
     when "東京"
+      @key = ENV["API_KEY"]
       logger.debug(@key)
+      logger.debug("出てきて欲しいな")
       url = "https://api.openweathermap.org/data/2.5/forecast?q=Tokyo&appid=" + @key 
       response =open(url)
       logger.debug(response)
@@ -129,8 +131,8 @@ class LinebotController < ApplicationController
       config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
       config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
     }
-    @key = ENV["API_KEY"]
   end
+  
   
 #   def template
     
