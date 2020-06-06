@@ -87,7 +87,7 @@ class LinebotController < ApplicationController
     date = Date.today
     (0..7).each do |i|
       weather_id = item[i][:weather][0][:id]
-      weather_date =  item[i][:weather][0][:dt_txt]
+      weather_date =  item[i][:weather][:dt_txt]
       logger.debug(weather_id)
       logger.debug(weather_date)
       weather = get_weather(weather_id)
