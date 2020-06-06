@@ -72,16 +72,10 @@ class LinebotController < ApplicationController
     case city
     when "東京"
       url = "https://api.openweathermap.org/data/2.5/forecast?q=Tokyo&appid=763383863ffb272b64c5303acca61551" 
-      logger.debug(url)
-      logger.debug("でござんす")
-      
       response =open(url)
       logger.debug(response)
       data = JSON.parse(response.read, {symbolize_names: true})
       result = weather(data)
-      logger.debug(result)
-      logger.debug("リザルトなの")
-      
       return result
     end
   end
@@ -90,9 +84,12 @@ class LinebotController < ApplicationController
     item = data[:list]
     cityname = data[:city][:name]
     n = 0
+    date = Date.today
     (0..7).each do |i|
       weather_id = item[i][:weather][0][:id]
+      weather_date =  item[i][:weather][0][:dt_txt]
       logger.debug(weather_id)
+      logger.debug(weather_date)
       weather = get_weather(weather_id)
       logger.debug(weather)
       
