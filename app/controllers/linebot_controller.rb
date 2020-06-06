@@ -35,14 +35,12 @@ class LinebotController < ApplicationController
           # logger.debug("東京に行きたいなー")
           if send_msg(message)
             city = "東京"
-            response =  template(city)
+            wether_status =  template(city)
             message = {
               type: 'text',
-              text: response
+              text: weather_status
             }
-            client.reply_message(event['replyToken'], response)
-            logger.debug(template(city))
-            logger.debug("あなたの意見をください")
+            client.reply_message(event['replyToken'], weather_status)
           end
           
           # if event.message['text'].eql?('アンケート')
