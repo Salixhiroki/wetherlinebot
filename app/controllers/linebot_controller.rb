@@ -71,8 +71,8 @@ class LinebotController < ApplicationController
   def template(city)
     case city
     when "東京"
-      
-      url = "https://api.openweathermap.org/data/2.5/forecast?q=Tokyo&appid=" + ENV["API_KEY"] 
+      key = ENV["API_KEY"]
+      url = "https://api.openweathermap.org/data/2.5/forecast?q=Tokyo&appid=" + key 
       response =open(url)
       logger.debug(response)
       data = JSON.parse(response.read, {symbolize_names: true})
