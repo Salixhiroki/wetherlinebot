@@ -82,7 +82,11 @@ class LinebotController < ApplicationController
     cityname = data[:city][:name]
     (0..7).each do |i|
       weather_id = item[i][:weather][0][:id]
+      logger.debug(weather_id)
       weather = get_weather(weather_id)
+      logger.debug(weather)
+      logger.debug("で五山せよ")
+      
       if weather == "雨"
         n = 1
       end
