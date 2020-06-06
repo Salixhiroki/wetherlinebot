@@ -90,12 +90,11 @@ class LinebotController < ApplicationController
       logger.debug(weather)
       
       if weather == "雨"
+        logger.debug("雨がいいな")
         n = 1
         break
       end
     end
-    logger.debug(n)
-    logger.debug("で五山せよ")
     if n==1
       return "傘を持っていってください"
     else
