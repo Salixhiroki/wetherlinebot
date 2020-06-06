@@ -69,7 +69,7 @@ class LinebotController < ApplicationController
     case city
     when "東京"
       
-      url= BASE_URL << ENV["API_KEY"]
+      url= BASE_URL + "763383863ffb272b64c5303acca61551"
       
       response =open(url)
       
