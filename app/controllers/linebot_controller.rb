@@ -3,16 +3,13 @@ class LinebotController < ApplicationController
   require 'line/bot'
   require "json"
   require 'net/https'
-  require 'uri'
+  require 'open-uri'
   require "date"
   protect_from_forgery :except => [:callback]
   
   def index
   end
-  
- 
-  
-  
+
 
   def callback
     body = request.body.read
@@ -69,6 +66,9 @@ class LinebotController < ApplicationController
     case city
     when "東京"
       url = "https://api.openweathermap.org/data/2.5/forecast?q=Tokyo&appid=763383863ffb272b64c5303acca61551" 
+      logger.debug(url)
+      logger.debug("でござんす")
+      
       response =open(url)
       logger.debug(response)
       data = JSON.parse(response.read, {symbolize_names: true})
