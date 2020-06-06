@@ -89,6 +89,7 @@ class LinebotController < ApplicationController
       
       if weather == "雨"
         n = 1
+        break
       end
     end
     
